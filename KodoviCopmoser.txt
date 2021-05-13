@@ -1,0 +1,9 @@
+composer require mcamara/laravel-localization
+composer require barryvdh/laravel-debugbar --dev
+composer require laravel/tinker
+composer require jrean/laravel-user-verification:dev-master
+composer require spatie/laravel-permission
+composer require spatie/laravel-translatable
+composer require "laravelcollective/html":"^5.4.0" composer require laravelcollective/html
+composer require Intervention/image
+composer require appzcoder/crud-generator --dev

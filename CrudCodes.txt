@@ -1,0 +1,32 @@
+php artisan crud:generate Accommodation --view-path="backend" --fields="name#string;city_id#integer;user_id#integer;category_id#integer;type_id#integer;description#longtext;capacity#integer;deposit#string;longitude#string;latitude#string;website#string;address#string;youtube_link#string;priority#integer;premium#integer;status#integer;views#integer"  --relationships="user#belongsTo#App\User,city#belongsTo#App\City,type#belongsTo#App\Type,category#belongsTo#App\Category" --validations="name#min:5|max:30|required;city_id#required|integer;user_id#required|integer;category_id#required|integer;type_id#required|integer;description#required;capacity#required|integer;deposit#required;longitude#required;latitude#required;website#url|required;address#min:5|max:30|required;youtube_link#url|required;priority#required|integer;premium#required|integer" --foreign-keys="city_id#id#city#cascade,user_id#id#users#cascade,category_id#id#category#cascade,type_id#id#types#cascade"
+
+php artisan crud:generate AccommodationUnit --view-path="backend" --fields="name#string;accommodation_id#integer;description#longtext;space_number#integer;species_id#integer;"  --relationships="accommodation#belongsTo#App\Accommodation" --validations="name#min:5|max:30|required;accommodation_id#required|integer;description#required;space_number#required|integer;species_id#required|integer;" 
+
+
+php artisan crud:view City --fields="name#string; path#string; state_id#integer;
+latitude#string;longitude#string;zoom#integer;status#integer" --view-path="backend"
+
+php artisan crud:generate Paiment --view-path="backend" --fields="name#string;picture#string;bwpicture#string" --validations="name#min:5|max:30|required;"
+
+php artisan crud:generate Period --view-path="backend" --fields="name#string;picture#string"  --relationships="accommodation#belongsToMany#App\Accommodation_period" --validations="name#min:5|max:30|required;picture#required;" 
+
+php artisan crud:generate Characteristic --view-path="backend" --fields="name#string;check#integer" --validations="name#min:5|max:30|required;"
+
+php artisan crud:migration accommodation_period --schema="accommodation_id#integer; period_id#integer" --foreign-keys="accommodation_id#id#accommodation#cascade,period_id#id#period#cascade"
+
+
+php artisan crud:model Accommodation_period  --relationships="accommodation_id#hasMany#App\Accommodation,period_id#hasMany#App\Period"
+
+php artisan crud:migration accommodation_characteristic  --schema="accommodation_id#integer;characteristic _id#integer" --foreign-keys="accommodation_id#id#accommodation#cascade,characteristics _id#id#characteristics #cascade"
+
+php artisan crud:migration accommodation_characteristics  --schema="accommodation_id#integer;characteristics _id#integer" --foreign-keys="accommodation_id#id#accommodation#cascade,characteristics _id#id#characteristics #cascade"
+
+php artisan crud:generate State --view-path="backend" --fields="name#string; path#string;latitude#string;longitude#string;zoom#integer;status#integer"  --validations="name#min:5|max:30|required;path#required|string;latitude#required|string;longitude#required|string;zoom#required|string;status#required|integer" 
+
+php artisan crud:generate Renting --view-path="backend" --fields="name#string"  --validations="name#min:5|max:30|required;" 
+
+php artisan crud:generate Payment --view-path="backend" --fields="name#string;picture#string;bwpicture#string" --validations="name#min:5|max:30|required;picture#required" 
+
+php artisan crud:generate Distance --view-path="backend" --fields="name#string;"  --validations="name#min:5|max:30|required;" 
+
+php artisan crud:generate Species --view-path="backend" --fields="name#string;"  --validations="name#min:5|max:30|required;" 
